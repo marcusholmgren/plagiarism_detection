@@ -1,7 +1,8 @@
+import os
 import io
 import re
 import pandas as pd
-import operator 
+import operator
 
 # Add 'datatype' column that indicates if the record is original wiki answer as 0, training data 1, test data 2, onto 
 # the dataframe - uses stratified random sampling (with seed) to sample by task & plagiarism amount 
@@ -102,7 +103,7 @@ def create_text_column(df: pd.DataFrame, file_directory='data/') -> pd.DataFrame
     for row_i in df.index:
         filename = df.iloc[row_i]['File']
         #print(filename)
-        file_path = file_directory + filename
+        file_path = os.path.join(file_directory, filename)
         with open(file_path, 'r', encoding='utf-8', errors='ignore') as file:
 
             # standardize text using helper function

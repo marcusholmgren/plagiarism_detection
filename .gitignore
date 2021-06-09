@@ -130,3 +130,7 @@ dmypy.json
 
 # JetBrains IDE
 .idea
+
+# downloaded data
+data*
+__MACOSX/
