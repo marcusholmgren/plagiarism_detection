@@ -10,7 +10,7 @@ import pandas as pd
 import joblib
 
 ## TODO: Import any additional libraries you need to define a model
-
+from sklearn.naive_bayes import GaussianNB
 
 # Provided model load function
 def model_fn(model_dir):
@@ -56,14 +56,15 @@ if __name__ == '__main__':
     
     
     ## --- Your code here --- ##
-    
+    #bayes_model =
 
     ## TODO: Define a model 
-    model = None
+    model = GaussianNB()
+
     
     
     ## TODO: Train the model
-    
+    model.fit(train_x, train_y)
     
     
     ## --- End of your code  --- ##
