@@ -34,7 +34,6 @@ Please see the [README](https://github.com/udacity/ML_SageMaker_Studies/tree/mas
 
 ## Resources
 
-[Machine Learning Engineer](https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009t)
-[Use PyTorch with Amazon SageMaker](https://docs.aws.amazon.com/sagemaker/latest/dg/pytorch.html)
-[Use Scikit-learn with Amazon SageMaker](https://docs.aws.amazon.com/sagemaker/latest/dg/sklearn.html)
-
+[Machine Learning Engineer](https://www.udacity.com/course/machine-learning-engineer-nanodegree--nd009t)  
+[Use PyTorch with Amazon SageMaker](https://docs.aws.amazon.com/sagemaker/latest/dg/pytorch.html)  
+[Use Scikit-learn with Amazon SageMaker](https://docs.aws.amazon.com/sagemaker/latest/dg/sklearn.html)  
