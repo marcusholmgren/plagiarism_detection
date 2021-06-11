@@ -20,6 +20,8 @@ This project will be broken down into three main notebooks:
 * Select "good" features, by analyzing the correlations between different features.
 * Create train/test `.csv` files that hold the relevant features and class labels for train/test data points.
 
+Frozen output from [Plagiarism Feature Engineering](./docs/2_Plagiarism_Feature_Engineering.html) as HTML document.
+
 **Notebook 3: Train and Deploy Your Model in SageMaker**
 
 * Upload your train/test feature data to S3.

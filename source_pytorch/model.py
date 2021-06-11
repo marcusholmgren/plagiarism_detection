@@ -44,6 +44,6 @@ class BinaryClassifier(nn.Module):
         x_input = F.dropout(x_input, p=0.3)
         hidden = F.relu(self.hidden_layer(x_input))
         hidden = F.dropout(hidden, p=0.3)
-        output = F.BCE(self.output_layer(hidden))
+        output = F.sigmoid(self.output_layer(hidden))
 
         return output
