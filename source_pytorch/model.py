@@ -1,4 +1,5 @@
 # torch imports
+import torch
 import torch.nn.functional as F
 import torch.nn as nn
 
@@ -16,7 +17,7 @@ class BinaryClassifier(nn.Module):
     """
 
     ## TODO: Define the init function, the input params are required (for loading code in train.py to work)
-    def __init__(self, input_features, hidden_dim, output_dim):
+    def __init__(self, input_features: int, hidden_dim: int, output_dim: int):
         """
         Initialize the model by setting up linear layers.
         Use the input parameters to help define the layers of your model.
@@ -44,6 +45,6 @@ class BinaryClassifier(nn.Module):
         x_input = F.dropout(x_input, p=0.3)
         hidden = F.relu(self.hidden_layer(x_input))
         hidden = F.dropout(hidden, p=0.3)
-        output = F.sigmoid(self.output_layer(hidden))
+        output = torch.sigmoid(self.output_layer(hidden))
 
         return output
