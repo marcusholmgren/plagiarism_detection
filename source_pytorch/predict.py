@@ -1,5 +1,7 @@
 # import libraries
 import os
+import sys
+import logging
 import numpy as np
 import torch
 from six import BytesIO
@@ -10,11 +12,14 @@ from model import BinaryClassifier
 # default content type is numpy array
 NP_CONTENT_TYPE = 'application/x-npy'
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+logger.addHandler(logging.StreamHandler(sys.stdout))
 
 # Provided model load function
 def model_fn(model_dir):
     """Load the PyTorch model from the `model_dir` directory."""
-    print("Loading model.")
+    logger.info(f"Loading model. Path: {model_dir}")
 
     # First, load the parameters used to create the model.
     model_info = {}
@@ -36,13 +41,13 @@ def model_fn(model_dir):
     # Prep for testing
     model.to(device).eval()
 
-    print("Done loading model.")
+    logger.info("Done loading model.")
     return model
 
 
 # Provided input data loading
 def input_fn(serialized_input_data, content_type):
-    print('Deserializing the input data.')
+    logger.info(f'Deserializing the input data. content_type: {content_type}')
     if content_type == NP_CONTENT_TYPE:
         stream = BytesIO(serialized_input_data)
         return np.load(stream)
@@ -51,7 +56,7 @@ def input_fn(serialized_input_data, content_type):
 
 # Provided output data handling
 def output_fn(prediction_output, accept):
-    print('Serializing the generated output.')
+    logger.info(f'Serializing the generated output. accept: {accept}')
     if accept == NP_CONTENT_TYPE:
         stream = BytesIO()
         np.save(stream, prediction_output)
@@ -61,7 +66,7 @@ def output_fn(prediction_output, accept):
 
 # Provided predict function
 def predict_fn(input_data, model):
-    print('Predicting class labels for the input data...')
+    logger.info(f'Predicting class labels for the input data...  input_data: {input_data}')
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     

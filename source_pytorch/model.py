@@ -1,4 +1,5 @@
 # torch imports
+import torch
 import torch.nn.functional as F
 import torch.nn as nn
 
@@ -16,7 +17,7 @@ class BinaryClassifier(nn.Module):
     """
 
     ## TODO: Define the init function, the input params are required (for loading code in train.py to work)
-    def __init__(self, input_features, hidden_dim, output_dim):
+    def __init__(self, input_features: int, hidden_dim: int, output_dim: int):
         """
         Initialize the model by setting up linear layers.
         Use the input parameters to help define the layers of your model.
@@ -27,6 +28,9 @@ class BinaryClassifier(nn.Module):
         super(BinaryClassifier, self).__init__()
 
         # define any initial layers, here
+        self.input_layer = nn.Linear(input_features, hidden_dim)
+        self.hidden_layer = nn.Linear(hidden_dim, hidden_dim)
+        self.output_layer = nn.Linear(hidden_dim, output_dim)
 
     ## TODO: Define the feedforward behavior of the network
     def forward(self, x):
@@ -35,7 +39,12 @@ class BinaryClassifier(nn.Module):
         :param x: A batch of input features of size (batch_size, input_features)
         :return: A single, sigmoid-activated value as output
         """
-        
+
         # define the feedforward behavior
-        
-        return x
+        x_input = F.relu(self.input_layer(x))
+        x_input = F.dropout(x_input, p=0.3)
+        hidden = F.relu(self.hidden_layer(x_input))
+        hidden = F.dropout(hidden, p=0.3)
+        output = torch.sigmoid(self.output_layer(hidden))
+
+        return output
